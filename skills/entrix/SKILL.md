@@ -1,6 +1,6 @@
 ---
 name: entrix
-description: Set up or repair Entrix fitness specs in the current repository by discovering real quality signals, generating docs/fitness, and iterating with entrix validation until the result is executable. Use when the user asks to bootstrap entrix, add or split fitness dimensions, repair invalid fitness specs, or make docs/fitness actually runnable.
+description: Set up or repair Entrix guardrail specs in the current repository by discovering real quality signals, generating docs/fitness, and iterating with entrix validation until the result is executable. Use when the user asks to bootstrap entrix, add or split fitness dimensions, repair invalid guardrail specs, or make docs/fitness actually runnable.
 license: MIT
 ---
 
@@ -9,6 +9,10 @@ license: MIT
 Goal: leave the target repository with a working `docs/fitness/` configuration
 that matches real tooling, is discoverable from the repository entrypoint, and
 passes Entrix validation instead of merely looking plausible.
+
+Entrix uses `fitness` in the evolutionary architecture sense: an executable
+check that measures whether a codebase still satisfies a quality or architecture
+goal. The user-facing description is "quality guardrail".
 
 This skill now uses a small entrypoint plus reusable spec files under
 `specs/`. Read those specs instead of improvising schema details.

@@ -15,7 +15,7 @@ class TerminalReporter:
         self, *, dry_run: bool = False, tier: str | None = None, parallel: bool = False
     ) -> None:
         print("=" * 60)
-        print("FITNESS FUNCTION REPORT")
+        print("GUARDRAIL CHECK REPORT")
         if dry_run:
             print("(DRY-RUN MODE)")
         if tier:

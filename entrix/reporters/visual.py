@@ -128,7 +128,7 @@ class RichLiveProgressReporter:
 
         lines = [
             (
-                f"[fitness] {counts['passed']} passed | {counts['failed']} failed | "
+                f"[guardrail] {counts['passed']} passed | {counts['failed']} failed | "
                 f"{counts['running']} running | {counts['queued']} queued | {hard_failures} hard-gate failures"
             )
         ]
@@ -144,7 +144,7 @@ class RichLiveProgressReporter:
                 f"[{idx}/{len(self._order)}] {state['status'].upper()}({gate}) {metric_name}{duration}"
             )
         if self._tail:
-            lines.append("[fitness tail]")
+            lines.append("[guardrail tail]")
             lines.extend(self._tail)
         return lines
 
@@ -180,7 +180,7 @@ class RichLiveProgressReporter:
                 hard_failures += 1
 
         summary = Text.assemble(
-            ("[fitness] ", "bold"),
+            ("[guardrail] ", "bold"),
             (f"{counts['passed']} passed", "green"),
             (" | ", ""),
             (f"{counts['failed']} failed", "red"),
@@ -214,7 +214,7 @@ class RichLiveProgressReporter:
 
         renderables = [summary, table]
         if self._tail:
-            renderables.append(Panel("\n".join(self._tail), title="fitness tail", border_style="yellow"))
+            renderables.append(Panel("\n".join(self._tail), title="guardrail tail", border_style="yellow"))
         return Group(*renderables)
 
 
@@ -265,7 +265,7 @@ class RichReporter:
 
         Console, Table, Text = rich
         console = Console()
-        table = Table(title="Fitness Scorecard", show_lines=False)
+        table = Table(title="Guardrail Scorecard", show_lines=False)
         table.add_column("Dimension", style="bold")
         table.add_column("Score")
         table.add_column("Weight", justify="right")

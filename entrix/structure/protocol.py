@@ -1,6 +1,6 @@
 """Protocol definition for structural analyzers.
 
-Decouples the fitness engine from any specific code graph implementation.
+Decouples the guardrail engine from any specific code graph implementation.
 The built-in Tree-sitter adapter is the default backend, but the Protocol allows
 swapping in alternative implementations (external code-review-graph, remote
 service, etc.).
