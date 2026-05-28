@@ -93,8 +93,8 @@ def test_rich_live_progress_reporter_tracks_state_and_tail(monkeypatch):
     )
 
     lines = reporter.snapshot_lines()
-    assert lines[0] == "[fitness] 1 passed | 1 failed | 0 running | 0 queued | 1 hard-gate failures"
+    assert lines[0] == "[guardrail] 1 passed | 1 failed | 0 running | 0 queued | 1 hard-gate failures"
     assert "[1/2] PASSED(SOFT) lint 1.2s" in lines
     assert "[2/2] FAILED(HARD) tests 2.2s" in lines
-    assert "[fitness tail]" in lines
+    assert "[guardrail tail]" in lines
     assert "[tests|HARD|FAILED] boom" in lines
