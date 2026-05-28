@@ -1,4 +1,4 @@
-"""MCP server — expose fitness functions as tools for AI agent integration."""
+"""MCP server — expose guardrail checks as tools for AI agent integration."""
 
 from __future__ import annotations
 
@@ -20,7 +20,13 @@ def create_server(project_root: Path | None = None):
     if project_root is None:
         project_root = Path.cwd()
 
-    mcp = FastMCP("entrix", instructions="Evolutionary architecture fitness engine")
+    mcp = FastMCP(
+        "entrix",
+        instructions=(
+            "Executable quality guardrails powered by evolutionary architecture "
+            "fitness functions"
+        ),
+    )
 
     @mcp.tool()
     def run_fitness(
@@ -30,7 +36,7 @@ def create_server(project_root: Path | None = None):
         dry_run: bool = False,
         min_score: float = 80.0,
     ) -> dict:
-        """Run fitness checks and return a structured report.
+        """Run guardrail checks and return a structured fitness report.
 
         Args:
             tier: Filter by tier (fast, normal, deep). None runs all.

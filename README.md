@@ -57,7 +57,7 @@ Requires Python 3.10+. `uv` is only needed for the `uv` / `uvx` workflow.
 <summary><strong>What it does</strong></summary>
 <br>
 
-- codify quality gates and architecture constraints as reusable fitness specs
+- codify quality gates and architecture constraints as reusable guardrail specs
 - run checks by `fast` / `normal` / `deep` tiers
 - run change-aware checks on diffs with weighted scoring and hard gates
 - route risky changes to deeper validation with `review-trigger`
@@ -82,6 +82,13 @@ Requires Python 3.10+. `uv` is only needed for the `uv` / `uvx` workflow.
 Additional design context:
 
 - `tools/entrix/docs/adr/README.md`: Entrix architecture decisions and rationale
+
+## Terminology
+
+Entrix uses **fitness** in the evolutionary architecture sense: a fitness
+function is an executable check that measures whether a codebase still satisfies
+a quality or architecture goal. In product-facing language, you can think of
+these as versioned quality guardrails.
 
 ## Requirements
 
@@ -131,7 +138,7 @@ uvx entrix install --repo .
 
 ## First Run
 
-### 1. Create a fitness spec
+### 1. Create a guardrail spec
 
 By default, `entrix run` looks for specs under the current project's:
 
@@ -344,8 +351,8 @@ pip install -e .
 
 Most repositories only need these three commands:
 
-- `entrix run`: execute fitness checks from `docs/fitness/*.md`
-- `entrix validate`: validate the fitness configuration
+- `entrix run`: execute guardrail checks from `docs/fitness/*.md`
+- `entrix validate`: validate the guardrail configuration
 - `entrix review-trigger`: escalate risky diffs to human review
 
 Use `entrix analyze long-file` for oversized-file structure analysis and `entrix graph ...` for graph-backed impact analysis.
@@ -359,7 +366,7 @@ Entrix includes copyable examples under [`examples/`](./examples/):
 
 ### `entrix run`
 
-Runs dimension-based fitness checks loaded from `docs/fitness/*.md`.
+Runs dimension-based guardrail checks loaded from `docs/fitness/*.md`.
 
 Common flags:
 
@@ -507,11 +514,11 @@ entrix graph review-context --base HEAD~1 --output context.json
 
 ## Preset System
 
-Entrix uses a preset system to adapt behavior to different project layouts. The default `ProjectPreset` looks for fitness specs in `docs/fitness/` and review triggers in `docs/fitness/review-triggers.yaml`.
+Entrix uses a preset system to adapt behavior to different project layouts. The default `ProjectPreset` looks for guardrail specs in `docs/fitness/` and review triggers in `docs/fitness/review-triggers.yaml`.
 
 Custom presets can override:
 
-- `fitness_dir(project_root)` — where to find fitness spec files
+- `fitness_dir(project_root)` — where to find guardrail spec files
 - `review_trigger_config(project_root)` — path to the review trigger YAML
 - `should_ignore_changed_file(file_path)` — filter out irrelevant changed files
 - `domains_from_files(files)` — extract domain tags from changed file paths
@@ -520,7 +527,7 @@ A built-in `RoutaPreset` is included as a reference implementation for monorepo 
 
 ## AI-Friendly Authoring Notes
 
-If an AI agent is generating or updating fitness specs, these conventions work best:
+If an AI agent is generating or updating guardrail specs, these conventions work best:
 
 - keep one dimension per file
 - make the frontmatter executable and the body explanatory

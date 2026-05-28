@@ -265,7 +265,7 @@ class RichReporter:
 
         Console, Table, Text = rich
         console = Console()
-        table = Table(title="Fitness Scorecard", show_lines=False)
+        table = Table(title="Guardrail Scorecard", show_lines=False)
         table.add_column("Dimension", style="bold")
         table.add_column("Score")
         table.add_column("Weight", justify="right")

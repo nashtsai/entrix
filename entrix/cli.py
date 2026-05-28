@@ -598,7 +598,7 @@ def _collect_run_files(args: argparse.Namespace, project_root: Path) -> list[str
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    """Run fitness checks (main command)."""
+    """Run architecture fitness functions as executable guardrail checks."""
     project_root = _find_project_root()
     _find_fitness_dir(project_root)
     preset = get_project_preset()
@@ -1140,11 +1140,14 @@ def cmd_analyze_long_file(args: argparse.Namespace) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="entrix",
-        description="Evolutionary architecture fitness engine for change-aware verification",
+        description=(
+            "Executable quality guardrails powered by evolutionary architecture "
+            "fitness functions"
+        ),
     )
     subparsers = parser.add_subparsers(dest="command")
 
-    run_parser = subparsers.add_parser("run", help="Run fitness checks")
+    run_parser = subparsers.add_parser("run", help="Run guardrail checks")
     run_parser.add_argument(
         "--tier", choices=["fast", "normal", "deep"], help="Run only metrics up to this tier"
     )

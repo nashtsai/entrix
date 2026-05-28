@@ -1,5 +1,9 @@
 """Domain model for evolutionary architecture fitness functions.
 
+In Entrix, "fitness" follows the evolutionary architecture term: an executable
+check that measures whether a codebase still satisfies a quality or architecture
+goal. User-facing text often calls the same concept a guardrail.
+
 Aligns with concepts from "Building Evolutionary Architectures":
 - Fitness Function → Metric (an executable architectural check)
 - Dimension → architectural characteristic category
